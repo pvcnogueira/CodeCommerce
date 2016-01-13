@@ -1,3 +1,7 @@
 <h1>Exemplo</h1>
 
-<p> Olá {{ $nome }} {{ $sobrenome  }}</p>
+<ul>
+    @foreach($categories as $category)
+        <li>{{ $category->name  }} - {{ $category->description  }} - {{ $category->created_atexi  }}</li>
+    @endforeach
+</ul>

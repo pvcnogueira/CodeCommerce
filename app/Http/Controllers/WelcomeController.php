@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Category;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
@@ -9,6 +10,18 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class WelcomeController extends Controller
 {
+
+
+    /**
+     * @var Category
+     */
+    private $category;
+
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,16 +32,12 @@ class WelcomeController extends Controller
         return view('welcome');
     }
 
-    public function exemplo(){
-        $nome = "Pedro";
-        $sobrenome = "Nogueira";
-
-        //return view('exemplo', ["nome" => $nome, "sobrenome" => $sobrenome]);
-        /*
-         * Outro Método
-         */
-        return view('exemplo', compact('nome', 'sobrenome'));
+    public function exemplo()
+    {
+        $categories = $this->category->all();
+        return view('exemplo', compact('categories'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +51,7 @@ class WelcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,7 +62,7 @@ class WelcomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +73,7 @@ class WelcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +84,8 @@ class WelcomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +96,7 @@ class WelcomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
