@@ -61,7 +61,8 @@ class AdminCategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = $this->category->find($id);
+        return $category->name;
     }
 
     /**
