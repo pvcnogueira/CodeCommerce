@@ -29,7 +29,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $categories = $this->category->all();
-        return view('adminCategories', compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AdminCategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view("categories.create");
     }
 
     /**
@@ -48,9 +48,13 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CategoryRequest $request)
     {
-        //
+        $input = $request->all();
+        $category = $this->category->fill($input);
+        $category->save();
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -73,7 +77,8 @@ class AdminCategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->category->find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -83,9 +88,10 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CategoryRequest $request, $id)
     {
-        //
+        $this->category->find($id)->update($request->all());
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -96,6 +102,7 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->category->find($id)->delete();
+        return redirect()->route('categories.index');
     }
 }

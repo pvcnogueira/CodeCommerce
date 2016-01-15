@@ -25,9 +25,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{id?}', ['as' => 'show',  'uses' => 'AdminCategoriesController@show']);
         Route::get('/create', ['as' => 'create',  'uses' => 'AdminCategoriesController@create']);
         Route::post('/store', ['as' => 'store',  'uses' => 'AdminCategoriesController@store']);
-        Route::get('/edit/{id?}', ['as' => 'edit',  'uses' => 'AdminCategoriesController@edit']);
-        Route::put('/update/{id?}', ['as' => 'update',  'uses' => 'AdminCategoriesController@update']);
-        Route::get('/destroy/{id?}', ['as' => 'destroy',  'uses' => 'AdminCategoriesController@destroy']);
+        Route::get('/edit/{id}', ['as' => 'edit',  'uses' => 'AdminCategoriesController@edit']);
+        Route::put('/update/{id}', ['as' => 'update',  'uses' => 'AdminCategoriesController@update']);
+        Route::get('/destroy/{id}', ['as' => 'destroy',  'uses' => 'AdminCategoriesController@destroy']);
     });
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
@@ -35,8 +35,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{id?}', ['as' => 'show',  'uses' => 'AdminProductsController@show']);
         Route::get('/create', ['as' => 'create',  'uses' => 'AdminProductsController@create']);
         Route::post('/store', ['as' => 'store',  'uses' => 'AdminProductsController@store']);
-        Route::get('/edit/{id?}', ['as' => 'edit',  'uses' => 'AdminProductsController@edit']);
-        Route::put('/update/{id?}', ['as' => 'update',  'uses' => 'AdminProductsController@update']);
-        Route::get('/destroy/{id?}', ['as' => 'destroy',  'uses' => 'AdminProductsController@destroy']);
+        Route::get('/edit/{id}', ['as' => 'edit',  'uses' => 'AdminProductsController@edit']);
+        Route::put('/update/{id}', ['as' => 'update',  'uses' => 'AdminProductsController@update']);
+        Route::get('/destroy/{id}', ['as' => 'destroy',  'uses' => 'AdminProductsController@destroy']);
     });
 });
