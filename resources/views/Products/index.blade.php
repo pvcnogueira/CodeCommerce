@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-10">
-            <a href="{{URL::route('products.create')}}" class="btn btn-primary">Novo</a>
+            <a href="{{URL::route('products.create')}}" class="btn btn-primary">New Product</a>
         </div>
     </div>
     <hr/>
@@ -20,6 +20,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Featured</th>
                     <th>Recommend</th>
                     <th>Actions</th>
@@ -31,16 +32,20 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{ $product->price }}</td>
+                    <td>{{ $product->category->name }}</td>
                     <td>{{ $product->featured }}</td>
                     <td>{{ $product->recommend }}</td>
                     <td>
                         <a href="{{ route('products.edit', ['id'=>$product->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="{{ route('products.images.index', ['id'=>$product->id]) }}"><i class="glyphicon glyphicon-camera"></i></a>
                         <a href="{{ route('products.destroy', ['id'=>$product->id]) }}"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
+            {{--Pagination--}}
+            {!! $products->render() !!}
         </div>
     </div>
 

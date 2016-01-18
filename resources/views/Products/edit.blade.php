@@ -33,6 +33,12 @@
             {!! Form::label('price', 'Price:') !!}
             <input type="number" name="price" step="0.01" value="{{ $product->price }}"/>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('category', 'Category:') !!}
+            {!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
+        </div>
+
         <div class="form-group">
             <div class="radio">
                 <label>

@@ -16,7 +16,7 @@
                 @endforeach
             </ul>
         @endif
-       {!! Form::open(['url'=>URL::route('products.store')]) !!}
+       {!! Form::open(['route'=>'products.store']) !!}
         <div class="form-group">
             {{--{!! Form::label('name', 'Name:') !!}--}}
             {!! Form::label('name', 'Name:') !!}
@@ -33,6 +33,12 @@
             {!! Form::label('price', 'Price:') !!}
             <input type="number" name="price" step="0.01"/>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('category', 'Category:') !!}
+            {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
+        </div>
+
         <div class="form-group">
             <div class="radio">
                 <label>

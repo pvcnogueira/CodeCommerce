@@ -18,6 +18,11 @@ Route::pattern('id', '[0-9]+'); //Padroniza a variavel ID a ser somente número,
 Route::get('/', 'WelcomeController@index');
 Route::get('exemplo', 'WelcomeController@exemplo');
 
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('login', function(){ return view('auth.login'); });
+    Route::get('register', function(){ return view('auth.register'); });
+});
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
@@ -38,5 +43,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/edit/{id}', ['as' => 'edit',  'uses' => 'AdminProductsController@edit']);
         Route::put('/update/{id}', ['as' => 'update',  'uses' => 'AdminProductsController@update']);
         Route::get('/destroy/{id}', ['as' => 'destroy',  'uses' => 'AdminProductsController@destroy']);
+
+        Route::group(['prefix' => 'images', 'as' => 'images.'], function() {
+            Route::get('/{id}', ['as' => 'index', 'uses' => 'AdminProductsController@images']);
+            Route::get('create/{id}', ['as' => 'create', 'uses' => 'AdminProductsController@createImage']);
+            Route::post('store/{id}', ['as' => 'store', 'uses' => 'AdminProductsController@storeImage']);
+            Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'AdminProductsController@destroyImage']);
+        });
     });
 });
