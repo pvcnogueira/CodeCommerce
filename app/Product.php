@@ -24,4 +24,28 @@ class Product extends Model
     {
         return $this->hasMany('CodeCommerce\ProductImage');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('CodeCommerce\Tag');
+    }
+
+//    public function nameDescription()
+//    {
+//        return $this->name." - ".$this->description;
+//    }
+
+    //Gera Atributo Personalizado, que não precisa estar no Banco de dados
+    public function getNameDescriptionAttribute()
+    {
+        return $this->name." - ".$this->description;
+    }
+
+    //Retorna uma lista de tags separadas por virgula
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name')->toArray();
+
+        return implode(', ', $tags);
+    }
 }

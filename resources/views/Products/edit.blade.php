@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h1>Create Product</h1>
+        <h1>Editing Product - {{ $product->name }}</h1>
     </div>
 </div>
 <div class="row">
@@ -40,6 +40,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('tags', 'Tags:') !!}
+            {!! Form::textarea('tags', $product->tagList, ['placeholder' => 'Separadas por vírgulas', 'rows' => 2, 'class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             <div class="radio">
                 <label>
                     Featured:
@@ -69,7 +74,7 @@
         </div>
 
          <div class="form-group">
-             {!! Form::submit('Add Product', ['class'=>'btn btn-primary']) !!}
+             {!! Form::submit('Update Product', ['class'=>'btn btn-primary']) !!}
 
              <a href="{{ route('products.index') }}" class="btn btn-default">Cancel</a>
          </div>

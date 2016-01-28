@@ -26,7 +26,7 @@
 
         <div class="form-group">
             {!! Form::label('description', 'Description:') !!}
-            {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+            {!! Form::textarea('description', null, ['rows' => 4, 'class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -37,6 +37,11 @@
         <div class="form-group">
             {!! Form::label('category', 'Category:') !!}
             {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('tags', 'Tags:') !!}
+            {!! Form::textarea('tags', null, ['placeholder' => 'Separadas por vírgulas', 'rows' => 2, 'class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

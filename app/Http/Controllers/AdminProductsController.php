@@ -6,6 +6,7 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests\ProductImageRequest;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
@@ -53,11 +54,21 @@ class AdminProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\ProductRequest $request)
+    public function store(Requests\ProductRequest $request, Tag $tagModel)
     {
+
         $data = $request->all();
+        $tags = explode(',', str_replace(', ', ',', $data['tags']));
         $product = $this->product->fill($data);
         $product->save();
+
+        foreach($tags as $tag) {
+            $tag = ucfirst(strtolower($tag));
+            $thisTag = $tagModel->firstOrCreate(['name' => $tag]);
+            $product->tags()->sync($thisTag->id);
+        }
+
+
 
         return redirect()->route('products.index');
     }
@@ -93,9 +104,18 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\ProductRequest $request, $id)
+    public function update(Requests\ProductRequest $request, Tag $tagModel, $id)
     {
-        $this->product->find($id)->update($request->all());
+        $product = $this->product->find($id);
+        $data = $request->all();
+        $tags = explode(',', str_replace(', ', ',', $data['tags']));
+        $product->update($data);
+
+        foreach($tags as $tag) {
+            $tag = ucfirst(strtolower($tag));
+            $thisTag = $tagModel->firstOrCreate(['name' => $tag]);
+            $product->tags()->sync($thisTag->id);
+        }
         return redirect()->route('products.index');
     }
 
@@ -151,4 +171,5 @@ class AdminProductsController extends Controller
         return redirect()->route('products.images.index', ['id' => $product->id]);
 
     }
+
 }

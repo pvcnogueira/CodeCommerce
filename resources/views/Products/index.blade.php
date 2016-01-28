@@ -19,6 +19,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Tags</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Featured</th>
@@ -31,6 +32,7 @@
                     <th>{{$product->id}}</th>
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
+                    <td>{{$product->tagList}}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->featured }}</td>
