@@ -60,15 +60,15 @@ class AdminProductsController extends Controller
         $data = $request->all();
         $tags = explode(',', str_replace(', ', ',', $data['tags']));
         $product = $this->product->fill($data);
+        $relatedTags = array();
         $product->save();
 
         foreach($tags as $tag) {
             $tag = ucfirst(strtolower($tag));
             $thisTag = $tagModel->firstOrCreate(['name' => $tag]);
-            $product->tags()->sync($thisTag->id);
+            $relatedTags[] = $thisTag->id;
         }
-
-
+        $product->tags()->sync($relatedTags);
 
         return redirect()->route('products.index');
     }
@@ -109,13 +109,17 @@ class AdminProductsController extends Controller
         $product = $this->product->find($id);
         $data = $request->all();
         $tags = explode(',', str_replace(', ', ',', $data['tags']));
+        $relatedTags = [];
         $product->update($data);
 
         foreach($tags as $tag) {
             $tag = ucfirst(strtolower($tag));
             $thisTag = $tagModel->firstOrCreate(['name' => $tag]);
-            $product->tags()->sync($thisTag->id);
+            echo $tag;
+            $relatedTags[] = $thisTag->id;
         }
+        $product->tags()->sync($relatedTags);
+
         return redirect()->route('products.index');
     }
 
