@@ -33,10 +33,10 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->tagList}}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->featured }}</td>
-                    <td>{{ $product->recommend }}</td>
+                    <td>{{$product->price }}</td>
+                    <td>{{$product->category->name }}</td>
+                    <td>{{$product->featured }}</td>
+                    <td>{{$product->recommend }}</td>
                     <td>
                         <a href="{{ route('products.edit', ['id'=>$product->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
                         <a href="{{ route('products.images.index', ['id'=>$product->id]) }}"><i class="glyphicon glyphicon-camera"></i></a>

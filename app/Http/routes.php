@@ -11,11 +11,11 @@
 |
 */
 
+//Padroniza a variavel ID a ser somente número, para não precisar ficar usando o where
+Route::pattern('id', '[0-9]+');
 
-Route::pattern('id', '[0-9]+'); //Padroniza a variavel ID a ser somente número, para não precisar ficar usando o where
 
-
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'StoreController@index');
 Route::get('exemplo', 'WelcomeController@exemplo');
 
 Route::group(['prefix' => 'auth'], function () {
@@ -34,7 +34,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/update/{id}', ['as' => 'update',  'uses' => 'AdminCategoriesController@update']);
         Route::get('/destroy/{id}', ['as' => 'destroy',  'uses' => 'AdminCategoriesController@destroy']);
     });
-
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/', ['as' => 'index',  'uses' => 'AdminProductsController@index']);
         Route::get('/{id?}', ['as' => 'show',  'uses' => 'AdminProductsController@show']);
@@ -51,4 +50,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'AdminProductsController@destroyImage']);
         });
     });
+    Route::get('/', ['as' => 'admin.index', 'uses' => function () {
+        return view('home');
+    }]);
+});
+
+Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+    Route::get('/{id}', ['as' => 'products', 'uses' => 'StoreController@listProductsCategory']);
 });
