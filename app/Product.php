@@ -57,4 +57,9 @@ class Product extends Model
     {
         return $query->where('recommend', '=', 1);
     }
+
+    public function scopeOfTag($query, $type)
+    {
+        return $query->where('category_id', '=', $type);
+    }
 }

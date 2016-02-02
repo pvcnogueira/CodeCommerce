@@ -58,3 +58,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
     Route::get('/{id}', ['as' => 'products', 'uses' => 'StoreController@listProductsCategory']);
 });
+
+Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+    Route::get('/{id}', ['as' => 'detail', 'uses' => 'StoreController@ProductDetails']);
+    Route::get('tag/{id}', ['as' => 'tag', 'uses' => 'StoreController@listProductsTags']);
+});
