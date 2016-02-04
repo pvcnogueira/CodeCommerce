@@ -3,14 +3,11 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Category;
+use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Requests\ProductImageRequest;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
 use CodeCommerce\Tag;
-use Illuminate\Http\Request;
-
-use CodeCommerce\Http\Requests;
-use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 

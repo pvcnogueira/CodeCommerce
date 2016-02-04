@@ -2,11 +2,11 @@
 
 namespace CodeCommerce\Http\Controllers\Auth;
 
-use CodeCommerce\User;
-use Validator;
 use CodeCommerce\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use CodeCommerce\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator;
 
 class AuthController extends Controller
 {
