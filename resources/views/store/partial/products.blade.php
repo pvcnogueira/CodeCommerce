@@ -13,10 +13,10 @@
 					<h2>R$ {{number_format($product->price, 2, ',', '.')}}</h2>
 
 					<p>{{$product->name}}</p>
-					<a href="{{ route('product.detail', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i
+					<a href="{{ route('store.product.detail', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i
 							class="fa fa-crosshairs"></i>Mais detalhes</a>
 
-					<a href="{{route('cart.add', ['id' => $product->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar
+					<a href="{{route('store.cart.add', ['id' => $product->id, 'qtd' => 1])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar
 						no carrinho</a>
 				</div>
 				<div class="product-overlay">
@@ -24,11 +24,11 @@
 						<h2>R$ {{number_format($product->price, 2, ',', '.')}}</h2>
 
 						<p>{{$product->name}}</p>
-						<a href="{{ route('product.detail', ['id' => $product->id]) }}"
+						<a href="{{ route('store.product.detail', ['id' => $product->id]) }}"
 						   class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais
 							detalhes</a>
 
-						<a href="{{route('cart.add', ['id' => $product->id])}}"
+						<a href="{{route('store.cart.add', ['id' => $product->id, 'qtd' => 1])}}"
 						   class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar
 							no carrinho</a>
 					</div>

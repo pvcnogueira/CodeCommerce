@@ -5,7 +5,7 @@ namespace CodeCommerce\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class RedirectIfAuthenticated
+class RedirectIfAdmin
 {
     /**
      * The Guard implementation.
@@ -35,7 +35,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect()->route('store.index');
+            if($this->auth->user()->is_admin == 0) {
+                return redirect()->route('store.index');
+            }
         }
 
         return $next($request);

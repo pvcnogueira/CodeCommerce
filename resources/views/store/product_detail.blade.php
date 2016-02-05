@@ -43,7 +43,7 @@
 					<p>{{ $product->description }}</p>
 					<span>
 						<span>R$ {{ number_format($product->price, 2, ',', '.') }}</span>
-						<a id="add_cart" href="{{route('cart.add', ['id' => $product->id, 'qtd' => 1])}}" class="btn btn-fefault cart">
+						<a id="add_cart" href="{{route('store.cart.add', ['id' => $product->id, 'qtd' => 1])}}" class="btn btn-fefault cart">
 							<i class="fa fa-shopping-cart"></i>
 							Adicionar no Carrinho
 						</a>
@@ -67,7 +67,7 @@
 					<span>
                     	<b class="bold">Tags: </b>
 						@foreach($product->tags as $tag)
-							<a href="{{ route('product.tag', ['id' => $tag->id]) }}">
+							<a href="{{ route('store.product.tag', ['id' => $tag->id]) }}">
 								{{ $tag->name }}
 							</a>
 						@endforeach

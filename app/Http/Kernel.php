@@ -27,6 +27,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \CodeCommerce\Http\Middleware\Authenticate::class,
+        'adminAuth' => \CodeCommerce\Http\Middleware\RedirectIfAdmin::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \CodeCommerce\Http\Middleware\RedirectIfAuthenticated::class,
     ];

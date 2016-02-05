@@ -22,7 +22,7 @@
 								@forelse($cart->all() as $k=>$item)
 									<tr>
 										<td class="cart_product">
-											<a href="{{ route('product.detail', ['id' => $k]) }}">
+											<a href="{{ route('store.product.detail', ['id' => $k]) }}">
 												@if(isset($item->images[0]))
 													<img src="{{ url('uploads/'.$item->images->first()->id.'.'.$item->images->first()->extension)}}" width="80px"/>
 												@else
@@ -32,7 +32,7 @@
 										</td>
 										<td class="cart_description">
 											<h4>
-												<a href="{{ route('product.detail', ['id' => $k]) }}">
+												<a href="{{ route('store.product.detail', ['id' => $k]) }}">
 													{{ $item['name'] }}
 												</a>
 											</h4>
@@ -48,7 +48,7 @@
 											R$ <span id="{{$k}}total">{{ $item['price'] * $item['qtd'] }}</span>
 										</td>
 										<td class="cart_delete">
-											<a href="{{ route('cart.destroy', ['id' => $k]) }}">Excluir</a>
+											<a href="{{ route('store.cart.destroy', ['id' => $k]) }}">Excluir</a>
 										</td>
 									</tr>
 								@empty
@@ -64,7 +64,7 @@
 										TOTAL: R$ <span id="total">{{ $cart->getTotal() }}</span>
 									</td>
 									<td>
-										<a class="btn btn-success" href="">Finalizar</a>
+										<a class="btn btn-success" href="{{ route('store.checkout.place') }}">Finalizar</a>
 									</td>
 								</tr>
 								</tbody>
@@ -76,7 +76,7 @@
 
 			<script>
 				function setQtd(qtd, id, price){
-					var caminho = "{{ route('cart.add') }}";
+					var caminho = "{{ route('store.cart.add') }}";
 					caminho = caminho.split('/');
 					caminho.pop();
 					caminho.pop();

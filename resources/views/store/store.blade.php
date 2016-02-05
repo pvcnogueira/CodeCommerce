@@ -54,11 +54,21 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i>
+                            <li><a href="{{ route('store.checkout.place') }}"><i class="fa fa-crosshairs"></i>
                                 Checkout</a></li>
-                            <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i>
+                            <li><a href="{{route('store.cart.index')}}"><i class="fa fa-shopping-cart"></i>
                                 Carrinho</a></li>
-                            <li><a href="http://commerce.dev:10088/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+                            @if (Auth::guest())
+								<li><a href="{{ route('auth.login') }}"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="{{ route('auth.register') }}">Register</a></li>
+							@else
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="{{ route('auth.logout') }}">Logout</a></li>
+									</ul>
+								</li>
+							@endif
                         </ul>
                     </div>
                 </div>

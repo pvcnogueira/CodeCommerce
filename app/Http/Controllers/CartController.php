@@ -40,7 +40,7 @@ class CartController extends Controller
 
         Session::set('cart',$cart);
 
-        return redirect()->route('cart.index');
+        return redirect()->route('store.cart.index');
 
     }
 
@@ -50,7 +50,7 @@ class CartController extends Controller
         $cart->remove($id);
         Session::set('cart',$cart);
 
-        return redirect()->route('cart.index');
+        return redirect()->route('store.cart.index');
 
     }
 
