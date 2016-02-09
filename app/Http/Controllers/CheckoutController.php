@@ -39,6 +39,6 @@ class CheckoutController extends Controller
         }
 
         Session::remove('cart');
-        return redirect()->route('store');
+        return redirect()->route('store.index');
     }
 }
